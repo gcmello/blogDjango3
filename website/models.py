@@ -12,13 +12,18 @@ class Post(models.Model):#cria uma classe Post dentro de models.Model
     sub_title = models.CharField(max_length=200)#dis que sub_title é um campo de palavras definido em 200 caracteres
     content = models.TextField()#dis que o content é um campo de texto;
 
-    categorias = models.CharField(
+    categories = models.CharField(
         max_length=2,
-        choices=Categorias.choices,
-        default=Categorias.GR,
+        choices= Categorias.choices,
+        default= Categorias.GR,
     )
 
     deleted = models.BooleanField(default=True)
+
+    def get_categories_label(self):
+        return self.get_categories_display()
+
+
 
     def __str__(self):
         return self.title
